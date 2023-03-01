@@ -31,7 +31,7 @@ class ForgeryJa::Address < Forgery::Address
   #   # => "トウキョウト"
   def self.state(options={})
     options = ForgeryJa.default_options(options)
-    ForgeryJa.parse(dictionaries[:states_ja].random, options[:to])
+    ForgeryJa.parse(dictionaries[:states_ja].sample, options[:to])
   end
 
   # Returns CityName in Japanese
@@ -46,7 +46,7 @@ class ForgeryJa::Address < Forgery::Address
   #   # => 鉾田市
   def self.city(options={})
     options = ForgeryJa.default_options(options)
-    ForgeryJa.parse(dictionaries[:cities_ja].random, options[:to])
+    ForgeryJa.parse(dictionaries[:cities_ja].sample, options[:to])
   end
 
   # Returns StreetName in Japanese
@@ -61,7 +61,7 @@ class ForgeryJa::Address < Forgery::Address
   #   # => 富士見町
   def self.street_name(options={})
     options = ForgeryJa.default_options(options)
-    ForgeryJa.parse(dictionaries[:streets_ja].random, options[:to])
+    ForgeryJa.parse(dictionaries[:streets_ja].sample, options[:to])
   end
 
   # Returns StreetName in Japanese
@@ -73,7 +73,7 @@ class ForgeryJa::Address < Forgery::Address
   #   ForgeryJa(:address).streets_number
   #   # => "1234-5"
   def self.street_number
-    formats[:street_number_ja].random.to_numbers
+    formats[:street_number_ja].sample.to_numbers
   end
 
   # Returns FullAddress in Japanese

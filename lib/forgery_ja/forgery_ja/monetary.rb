@@ -21,7 +21,7 @@ class ForgeryJa::Monetary < Forgery::Monetary
     options = {:max => 1000,
                :min => 0}.merge(options)
 
-    (options[:min]..options[:max]).random
+    (options[:min]..options[:max]).sample
   end
 
   # popularity in Japan
@@ -33,7 +33,7 @@ class ForgeryJa::Monetary < Forgery::Monetary
   def self.popularity_money(options={})
     # TODO Popularityではない。適当過ぎる
     options = {:digit => 4}.merge(options)
-    base_money = (1..9).random * (10 ** (options[:digit] - 1) )
+    base_money = (1..9).sample * (10 ** (options[:digit] - 1) )
     return base_money if options[:digit] < 3
     base_money + 98 * (10 ** (options[:digit] - 3))
   end

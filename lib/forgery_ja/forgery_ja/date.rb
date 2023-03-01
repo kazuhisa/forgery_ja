@@ -17,9 +17,9 @@ class ForgeryJa::Date < Forgery::Date
     options.reverse_merge!(:abbr => false)
 
     if options[:abbr]
-      JA_DAYS_ABBR.random
+      JA_DAYS_ABBR.sample
     else
-      JA_DAYS.random
+      JA_DAYS.sample
     end
   end
   # Returns a random month name in Japanese
@@ -30,9 +30,9 @@ class ForgeryJa::Date < Forgery::Date
     options.reverse_merge!(:wa => false)
 
     if options[:wa]
-      JA_MONTHS_WA.random
+      JA_MONTHS_WA.sample
     else
-      JA_MONTHS.random
+      JA_MONTHS.sample
     end
   end
 end

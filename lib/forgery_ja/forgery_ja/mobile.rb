@@ -16,7 +16,7 @@ class ForgeryJa::Mobile < ForgeryJa
     list << emoji_kddi_unicode if options[:kddi]
     list << emoji_softbank_unicode if options[:softbank]
     list << emoji_google_unicode if options[:google]
-    list.random
+    list.sample
   end
 
   # Return Sjis Emoji
@@ -32,7 +32,7 @@ class ForgeryJa::Mobile < ForgeryJa
     list << emoji_docomo_sjis if options[:docomo]
     list << emoji_kddi_sjis if options[:kddi]
     list << emoji_softbank_sjis if options[:softbank]
-    list.random
+    list.sample
   end
 
   # Returns Mobile Phone Number in Japaneses
@@ -43,7 +43,7 @@ class ForgeryJa::Mobile < ForgeryJa
   def self.phone_number(options={})
     options = {:hyphen => true}.merge(options)
     format = ( options[:hyphen] ? "-####-####" : "########" )
-    ["090", "080", "070"].random + format.to_numbers
+    ["090", "080", "070"].sample + format.to_numbers
   end
 
   # Returns Mobile IP
@@ -62,12 +62,12 @@ class ForgeryJa::Mobile < ForgeryJa
     list << docomo_ip if options[:docomo]
     list << kddi_ip if options[:kddi]
     list << softbank_ip if options[:softbank]
-    list.random
+    list.sample
   end
-  
+
   # Docomoの絵文字をUnicodeで返します
   def self.emoji_docomo_unicode
-    Emoji::Docomo.list.random
+    Emoji::Docomo.list.sample
   end
 
   # Docomoの絵文字をSjisで返します
@@ -77,7 +77,7 @@ class ForgeryJa::Mobile < ForgeryJa
 
   # Kddiの絵文字をUnicodeで返します
   def self.emoji_kddi_unicode
-    Emoji::Kddi.list.random
+    Emoji::Kddi.list.sample
   end
 
   # Kddiの絵文字をSjisで返します
@@ -87,7 +87,7 @@ class ForgeryJa::Mobile < ForgeryJa
 
   # Softbankの絵文字をUnicodeで返します
   def self.emoji_softbank_unicode
-    Emoji::Softbank.list.random
+    Emoji::Softbank.list.sample
   end
 
   # Softbankの絵文字をSjisで返します
@@ -97,7 +97,7 @@ class ForgeryJa::Mobile < ForgeryJa
 
   # Googleの絵文字をUnicodeで返します
   def self.emoji_google_unicode
-    Emoji::Google.list.random
+    Emoji::Google.list.sample
   end
 
   # DocomoのIPアドレスを返します
@@ -105,34 +105,34 @@ class ForgeryJa::Mobile < ForgeryJa
   #   フルブラウザの場合は異なるIPとなるようです
   # @see http://www.nttdocomo.co.jp/service/imode/make/content/ip/index.html
   def self.docomo_ip
-    calc_ip( dictionaries[:docomo_ip].random ).join "."
+    calc_ip( dictionaries[:docomo_ip].sample ).join "."
   end
-  
+
   # Kddiからの接続時のIPアドレスを返します
   #   返すIPは EZweb接続時のIPとなります
   #   PCサイトビューアー（PCSV)の際には異なるIPとなります
   #   2011年7月にリストが増えるようです
   # @see http://www.au.kddi.com/ezfactory/tec/spec/ezsava_ip.html
   def self.kddi_ip
-    calc_ip( dictionaries[:kddi_ip].random ).join "."
+    calc_ip( dictionaries[:kddi_ip].sample ).join "."
   end
-  
+
   # Softbankからの接続時のIPアドレスを返します
   #   返すIPは Yahoo!ケータイからの接続時のIPとなります
   #   PCサイトブラウザのIPアドレスは異なります
   #   SSL接続時の仕様が変わるようです(http://creation.mb.softbank.jp/web/web_ssl.html)
   # @see http://creation.mb.softbank.jp/web/web_ip.html
   def self.softbank_ip
-    calc_ip( dictionaries[:softbank_ip].random ).join "."
+    calc_ip( dictionaries[:softbank_ip].sample ).join "."
   end
-  
+
   private
     def self.calc_ip(ip)
       ip_array = ip.split "."
       # 最大で254
       s = ( 2 ** ( 32 - ip_array[3].split("/")[1].to_i ) ) - 2
       # 1 - 254の間で第4オクテットを生成
-      ip_array[3] = (ip_array[3].to_i + (1 .. s).random).to_s
+      ip_array[3] = (ip_array[3].to_i + (1 .. s).sample).to_s
       ip_array
     end
 end

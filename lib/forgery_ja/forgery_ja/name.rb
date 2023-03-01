@@ -14,7 +14,7 @@ class ForgeryJa::Name < Forgery::Name
   # @option options [Fixnum] :to (ForgeryJa::KANJI) 生成する文字の種類を指定します
   def self.last_name(options={})
     options = ForgeryJa.default_options(options)
-    ForgeryJa.parse(dictionaries[:last_names_ja].random, options[:to])
+    ForgeryJa.parse(dictionaries[:last_names_ja].sample, options[:to])
   end
 
   # Returns FirstName in Japanese
@@ -23,7 +23,7 @@ class ForgeryJa::Name < Forgery::Name
   # @option options [Fixnum] :to (ForgeryJa::KANJI) 生成する文字の種類を指定します
   def self.first_name(options={})
     options = ForgeryJa.default_options(options)
-    ForgeryJa.parse([dictionaries[:male_first_names_ja], dictionaries[:female_first_names_ja]].random.random, options[:to])
+    ForgeryJa.parse([dictionaries[:male_first_names_ja], dictionaries[:female_first_names_ja]].sample.sample, options[:to])
   end
 
   # Returns FullName in Japanese
@@ -42,7 +42,7 @@ class ForgeryJa::Name < Forgery::Name
   # @option options [Fixnum] :to (ForgeryJa::KANJI) 生成する文字の種類を指定します
   def self.male_first_name(options={})
     options = ForgeryJa.default_options(options)
-    ForgeryJa.parse(dictionaries[:male_first_names_ja].random, options[:to])
+    ForgeryJa.parse(dictionaries[:male_first_names_ja].sample, options[:to])
   end
 
   # Returns Female FirstName in Japanese
@@ -52,7 +52,7 @@ class ForgeryJa::Name < Forgery::Name
   # @option options [Fixnum] :to (ForgeryJa::KANJI) 生成する文字の種類を指定します
   def self.female_first_name(options={})
     options = ForgeryJa.default_options(options)
-    ForgeryJa.parse(dictionaries[:female_first_names_ja].random, options[:to])
+    ForgeryJa.parse(dictionaries[:female_first_names_ja].sample, options[:to])
   end
 
   # Returns CompanyName in Japanese
@@ -63,7 +63,7 @@ class ForgeryJa::Name < Forgery::Name
   # @option options [Fixnum] :to (ForgeryJa::KANJI) 生成する文字の種類を指定します
   def self.company_name(options={})
     options = ForgeryJa.default_options(options)
-    ForgeryJa.parse(dictionaries[:company_names_ja].random, options[:to])
+    ForgeryJa.parse(dictionaries[:company_names_ja].sample, options[:to])
   end
 
   # Returns JobTitle in Japanese
@@ -73,7 +73,7 @@ class ForgeryJa::Name < Forgery::Name
   # @option options [Fixnum] :to (ForgeryJa::KANJI) 生成する文字の種類を指定します
   def self.job_title(options={})
     options = ForgeryJa.default_options(options)
-    ForgeryJa.parse(dictionaries[:job_titles_ja].random, options[:to])
+    ForgeryJa.parse(dictionaries[:job_titles_ja].sample, options[:to])
   end
 
   # Returns NameTitle in Japanese
@@ -81,6 +81,6 @@ class ForgeryJa::Name < Forgery::Name
   # * 辞書ファイル : name_titles_ja
   # * optionの指定はできません
   def self.title
-    dictionaries[:name_titles_ja].random
+    dictionaries[:name_titles_ja].sample
   end
 end
